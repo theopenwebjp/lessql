@@ -2,12 +2,12 @@
 
 ## Installation
 
-Install LessQL via Composer, the package name is `morris/lessql`:
+Install LessQL via Composer, the package name is `theopenweb/lessql`:
 
 ```json
 {
     "require": {
-        "morris/lessql": "~0.3"
+        "theopenweb/lessql": "~0.3"
     }
 }
 ```

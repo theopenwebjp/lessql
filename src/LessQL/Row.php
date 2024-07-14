@@ -137,7 +137,7 @@ class Row implements \ArrayAccess, \IteratorAggregate, \JsonSerializable
     /**
      * Get the row's id
      *
-     * @return string|array
+     * @return string|array|null
      */
     public function getId()
     {
@@ -611,17 +611,17 @@ class Row implements \ArrayAccess, \IteratorAggregate, \JsonSerializable
 
     /**
      * @param string $offset
-     * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return $this->__isset($offset);
     }
 
     /**
      * @param string $offset
-     * @return mixed
+     * 
      */
+    #[\ReturnTypeWillChange]
     public function &offsetGet($offset)
     {
         return $this->__get($offset);
@@ -631,7 +631,7 @@ class Row implements \ArrayAccess, \IteratorAggregate, \JsonSerializable
      * @param string $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->__set($offset, $value);
     }
@@ -639,7 +639,7 @@ class Row implements \ArrayAccess, \IteratorAggregate, \JsonSerializable
     /**
      * @param string $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         $this->__unset($offset);
     }
@@ -647,9 +647,8 @@ class Row implements \ArrayAccess, \IteratorAggregate, \JsonSerializable
     // IteratorAggregate
 
     /**
-     * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->_properties);
     }

@@ -10,7 +10,7 @@ class Literal
     /**
      * Constructor
      *
-     * @param string
+     * @param string $value
      */
     public function __construct($value)
     {
