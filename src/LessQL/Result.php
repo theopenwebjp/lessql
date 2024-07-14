@@ -646,10 +646,8 @@ class Result implements \IteratorAggregate, \JsonSerializable
 
     /**
      * IteratorAggregate
-     *
-     * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         $this->execute();
 

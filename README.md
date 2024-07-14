@@ -1,18 +1,31 @@
 # LessQL
 
-[![Build Status](https://travis-ci.org/morris/lessql.svg?branch=master)](https://travis-ci.org/morris/lessql)
-[![Test Coverage](https://codeclimate.com/github/morris/lessql/badges/coverage.svg)](https://codeclimate.com/github/morris/lessql/coverage)
-
 LessQL is a lightweight and performant alternative to Object-Relational Mapping for PHP.
 
 **[Guide](doc/guide.md) | [Conventions](doc/conventions.md) | [API Reference](doc/api.md) | [About](doc/about.md)**
 
 *If you are looking for an SQL-based approach superior to raw PDO, check out [DOP](https://github.com/morris/dop) as an alternative.*
 
+## Fork Notes
+
+- The notes in this section outlines information regarding differences with the original repository: [morris/lessql](https://github.com/morris/lessql)
+- Other sections MAY have ONLY important/appropriate updates made to them compared with the original repository.
+- Reasons for fork:
+  - Last update is old:
+    - (May 10, 2020 at time of writing): [Releases](https://github.com/morris/lessql/releases)
+    - [Is this project still maintained?](https://github.com/morris/lessql/issues/39)
+    - [Next release...](https://github.com/morris/lessql/issues/29)
+  - Errors/warnings when using with newer PHP versions:
+    - PHP 8.1 deprecated errors such as with "offsetExists".
+    - Row not found exception. require_once of Row fixed it.
+  - Still using it in some projects so need to have a working up-to-date source(installed via composer through packagist.).
+- Notes:
+  - [morris/dop](https://github.com/morris/dop) is mentioned as an alternative, but it does not seem to have much development or be maintained.
+
 ## Installation
 
-Install LessQL via composer: `composer require morris/lessql`.
-LessQL requires PHP >= 5.6 and PDO.
+Install LessQL via composer: `composer require theopenweb/lessql`.
+LessQL requires PHP >= 8.0 and PDO.
 
 ## Usage
 
@@ -76,6 +89,7 @@ it was written from scratch to provide a clean API and simplified concepts.
 
 ## Contributors
 
+- [theopenwebjp](https://github.com/theopenwebjp)
 - [jayaddison](https://github.com/jayaddison)
 - [f0ma](https://github.com/f0ma)
 

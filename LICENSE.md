@@ -1,5 +1,6 @@
 The MIT License (MIT)
 
+Copyright (c) 2024+ The Open Web <public@theopenweb.jp>
 Copyright (c) 2015-2020 Morris Brodersen <mb@morrisbrodersen.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

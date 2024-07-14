@@ -2,11 +2,19 @@
 
 namespace LessQL;
 
+use LessQL\Row;
+
+// Added due to LessQL\Row not defined error.
+require_once __DIR__ . '/Row.php';
+
 /**
  * Database object wrapping a PDO instance
  */
 class Database
 {
+
+    protected \PDO $pdo;
+
     /**
      * Constructor. Sets PDO to exception mode.
      *
@@ -123,7 +131,7 @@ class Database
      * Return last inserted id
      *
      * @param string|null $sequence
-     * @return string
+     * @return string|false|null
      */
     public function lastInsertId($sequence = null)
     {
@@ -451,16 +459,15 @@ class Database
      * Select rows from a table
      *
      * @param string $table
-     * @param mixed $exprs
-     * @param array $where
-     * @param array $orderBy
-     * @param int|null $limitCount
-     * @param int|null $limitOffset
-     * @param array $params
+     * @param array $options
+
      * @return \PDOStatement
      */
     public function select($table, $options = array())
     {
+        /**
+         * @var array{expr: mixed, where: array, orderBy: array, limitCount: int|null, limitOffset: int|null, params: array}
+         */
         $options = array_merge(array(
             'expr' => null,
             'where' => array(),
@@ -517,7 +524,7 @@ class Database
     public function insert($table, $rows, $method = null)
     {
         if (empty($rows)) {
-            return;
+            return null;
         }
         if (!isset($rows[0])) {
             $rows = array($rows);
@@ -543,7 +550,7 @@ class Database
     {
         $columns = $this->getColumns($rows);
         if (empty($columns)) {
-            return;
+            return null;
         }
 
         $query = $this->insertHead($table, $columns);
@@ -578,7 +585,7 @@ class Database
     {
         $columns = $this->getColumns($rows);
         if (empty($columns)) {
-            return;
+            return null;
         }
 
         $query = $this->insertHead($table, $columns);
@@ -604,11 +611,13 @@ class Database
     {
         $columns = $this->getColumns($rows);
         if (empty($columns)) {
-            return;
+            return null;
         }
 
         $query = $this->insertHead($table, $columns);
         $lists = $this->valueLists($rows, $columns);
+
+        $statement = null;
 
         foreach ($lists as $list) {
             $singleQuery = $query . $list;
@@ -696,7 +705,7 @@ class Database
     public function update($table, $data, $where = array(), $params = array())
     {
         if (empty($data)) {
-            return;
+            return null;
         }
 
         $set = array();

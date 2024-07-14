@@ -3,6 +3,13 @@
 require_once 'vendor/autoload.php';
 require_once 'TestBase.php';
 
+/**
+ * TODO: LessQL\Database::user()
+ * TODO: LessQL\Database::post()
+ * TODO: LessQL\Database::dummy()
+ * TODO: LessQL\Database::category()
+ * TODO: LessQL\Database::categorization()
+ */
 class ResultTest extends TestBase
 {
     public function testPrimary()

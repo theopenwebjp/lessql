@@ -1,14 +1,19 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 require_once 'vendor/autoload.php';
 
-class TestBase extends PHPUnit\Framework\TestCase
+class TestBase extends TestCase
 {
     // static
-    public static $pdo;
-    public static $db;
+    public static \PDO $pdo;
+    public static \LessQL\Database $db;
 
-    public static function setUpBeforeClass()
+    protected array $queries = [];
+    protected array $params = [];
+
+    public static function setUpBeforeClass(): void
     {
         // do this only once
         if (isset(self::$db)) {
@@ -50,6 +55,8 @@ class TestBase extends PHPUnit\Framework\TestCase
     public static function schema()
     {
         self::$pdo->beginTransaction();
+
+        $p = '';
 
         if (self::driver() === 'sqlite') {
             $p = "INTEGER PRIMARY KEY AUTOINCREMENT";
@@ -218,7 +225,7 @@ class TestBase extends PHPUnit\Framework\TestCase
 
     protected $needReset = false;
 
-    public function setUp()
+    public function setUp(): void
     {
         self::$db->setQueryCallback(array($this, 'onQuery'));
         $this->queries = array();
@@ -235,7 +242,7 @@ class TestBase extends PHPUnit\Framework\TestCase
         $this->params[] = $params;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         self::clearTransaction();
 
